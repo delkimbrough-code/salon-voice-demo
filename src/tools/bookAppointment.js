@@ -1,5 +1,12 @@
+const { zonedTimeToUtc } = require('date-fns-tz');
 const { getCalendarClient } = require('../google/calendar');
 const { services, salonName } = require('../config/salon.config');
+
+function parseTime(str) {
+  if (!str) return null;
+  if (str.endsWith('Z') || /[+-]\d{2}:\d{2}$/.test(str)) return new Date(str);
+  return zonedTimeToUtc(new Date(str), 'America/New_York');
+}
 
 function getServiceDuration(serviceName) {
   const service = services.find(s => s.name.toLowerCase() === serviceName.toLowerCase());
@@ -12,12 +19,12 @@ async function bookAppointment({ callerName, callbackNumber, service, stylistNam
 
   let start, end;
   if (appointmentTime) {
-    start = new Date(appointmentTime);
+    start = parseTime(appointmentTime);
     end = new Date(start.getTime() + getServiceDuration(service) * 60 * 1000);
   } else {
-    start = new Date(startTime);
+    start = parseTime(startTime);
     end = endTime
-      ? new Date(endTime)
+      ? parseTime(endTime)
       : new Date(start.getTime() + getServiceDuration(service) * 60 * 1000);
   }
 
