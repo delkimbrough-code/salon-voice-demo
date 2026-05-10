@@ -50,11 +50,13 @@ function buildAssistantConfig(backendUrl) {
             parameters: {
               type: 'object',
               properties: {
-                callerName:     { type: 'string', description: 'Full name of the caller' },
-                callbackNumber: { type: 'string', description: 'Best callback phone number' },
-                service:        { type: 'string', description: 'Service being booked (e.g., Haircut, Color)' },
-                startTime:      { type: 'string', description: 'ISO 8601 start time of the chosen slot' },
-                endTime:        { type: 'string', description: 'ISO 8601 end time of the chosen slot' },
+                callerName:        { type: 'string', description: 'Full name of the caller' },
+                callbackNumber:    { type: 'string', description: 'Best callback phone number' },
+                service:           { type: 'string', description: 'Service being booked (e.g., Haircut, Color)' },
+                startTime:         { type: 'string', description: 'ISO 8601 start time of the chosen slot' },
+                endTime:           { type: 'string', description: 'ISO 8601 end time of the chosen slot' },
+                stylistName:       { type: 'string', description: 'Name of the stylist for the slot' },
+                stylistCalendarId: { type: 'string', description: 'Google Calendar ID of the stylist' },
               },
               required: ['callerName', 'callbackNumber', 'service', 'startTime', 'endTime'],
             },

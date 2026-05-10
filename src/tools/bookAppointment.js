@@ -1,5 +1,5 @@
 const { getCalendarClient } = require('../google/calendar');
-const { services } = require('../config/salon.config');
+const { services, salonName } = require('../config/salon.config');
 
 function getServiceDuration(serviceName) {
   const service = services.find(s => s.name.toLowerCase() === serviceName.toLowerCase());
@@ -21,7 +21,6 @@ async function bookAppointment({ callerName, callbackNumber, service, stylistNam
       : new Date(start.getTime() + getServiceDuration(service) * 60 * 1000);
   }
 
-  const salonName = process.env.SALON_NAME || 'SalonAnswer';
 
   const { data } = await calendar.events.insert({
     calendarId,

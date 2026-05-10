@@ -105,8 +105,8 @@ async function handleToolCalls(toolCallList) {
           if (slots.length === 0) {
             result = 'NO_SLOTS_AVAILABLE';
           } else {
-            const labels = slots.map(s => `${s.index}. ${s.label} (${s.durationMinutes} min)`).join('\n');
-            const slotData = slots.map(s => ({ index: s.index, start: s.start, end: s.end }));
+            const labels = slots.map(s => `${s.index}. ${s.label} with ${s.stylistName} (${s.durationMinutes} min)`).join('\n');
+            const slotData = slots.map(s => ({ index: s.index, start: s.start, end: s.end, stylistName: s.stylistName, stylistCalendarId: s.stylistCalendarId }));
             result = `Available slots for ${args.service}:\n${labels}\n\nSlot data for booking: ${JSON.stringify(slotData)}`;
           }
         } else if (fn.name === 'bookAppointment') {
@@ -120,7 +120,7 @@ async function handleToolCalls(toolCallList) {
             minute: '2-digit',
             hour12: true,
           });
-          result = `Appointment confirmed: "${booking.summary}" on ${displayTime} Eastern.`;
+          result = `Appointment confirmed: "${booking.summary}" on ${displayTime} Eastern${args.stylistName ? ` with ${args.stylistName}` : ''}.`;
         } else {
           result = `Unknown tool: ${fn.name}`;
         }
