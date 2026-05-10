@@ -12,7 +12,7 @@ module.exports = {
   },
   stylists: [
     {
-      name: 'Sofia',
+      name: 'Sophia',
       calendarId: '36bf91719e5637debc599935737a7eede90cddf4c9d712e86c07a202090fa6f0@group.calendar.google.com',
       specialties: ['Full Color', 'Highlights/Balayage', "Women's Haircut", 'Root Touch-Up'],
     },

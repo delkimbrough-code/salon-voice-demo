@@ -2,6 +2,7 @@ const { Router } = require('express');
 const { checkSlots } = require('../tools/checkSlots');
 const { bookAppointment } = require('../tools/bookAppointment');
 const { getServiceNames } = require('../config/services');
+const { salonName: SALON_NAME } = require('../config/salon.config');
 
 const router = Router();
 
@@ -40,7 +41,7 @@ function buildDynamicAssistant() {
 }
 
 function buildSystemPrompt(currentTime) {
-  const salonName = process.env.SALON_NAME || 'SalonAnswer';
+  const salonName = SALON_NAME;
   const services = getServiceNames().join(', ');
 
   return `You are a friendly and professional virtual receptionist for ${salonName}, a hair salon.
