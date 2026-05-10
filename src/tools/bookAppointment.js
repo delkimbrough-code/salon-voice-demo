@@ -8,7 +8,7 @@ function getServiceDuration(serviceName) {
 
 async function bookAppointment({ callerName, callbackNumber, service, stylistName, stylistCalendarId, startTime, endTime, appointmentTime }) {
   const calendar = getCalendarClient();
-  const calendarId = stylistCalendarId || process.env.GOOGLE_CALENDAR_ID || 'primary';
+  const calendarId = process.env.GOOGLE_CALENDAR_ID || 'primary';
 
   let start, end;
   if (appointmentTime) {
