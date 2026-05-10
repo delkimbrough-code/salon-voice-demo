@@ -36,6 +36,10 @@ function buildAssistantConfig(backendUrl) {
                   enum: serviceEnum,
                   description: 'The service the caller wants to book',
                 },
+                stylistPreference: {
+                  type: 'string',
+                  description: 'Optional preferred stylist name (Jamie, Sally, or Sophia)',
+                },
               },
               required: ['service'],
             },
